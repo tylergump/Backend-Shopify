@@ -1,0 +1,23 @@
+<%- include('./partials/header.ejs') %>
+
+<h1> Inventory </h1>
+
+<% for (let i = 0; i < items.length; i++){ %>
+  <h3><%=items[i].name%></h3>
+  <p><%=items[i].description%></p>
+  <p>Price: <%=items[i].price%></p>
+  <%if (items[i].qty > 0) {%>
+    <p>Quantity: <%=items[i].qty%></p>
+    <form action="/inv/<%=items[i].id%>/buy?_method=PUT" method="POST">
+      <button>Buy</button>
+    </form>
+  <%} else {%>
+    <p>SOLD OUT!</p>
+  <%}%>
+  <form action="/inv/<%=items[i].id%>?_method=DELETE" method="post">
+    <button>Delete</button>
+  </form>
+  <a href="/inv/<%=items[i].id%>">View</a>
+<%}%>
+
+<%- include('./partials/footer.ejs') %>

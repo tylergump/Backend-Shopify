@@ -1,0 +1,22 @@
+<%- include('./partials/header.ejs') %>
+
+<h1><%=items.name%></h1>
+<p><%=items.description%></p>
+<p>Price: <%=items.price%></p>
+<%if (items.qty > 0) {%>
+  <p>Quantity: <%=items.qty%></p>
+  <form action="/inv/<%=items.id%>/buy?_method=PUT" method="POST">
+    <button>Buy</button>
+  </form>
+
+<%} else {%>
+  <p>SOLD OUT!</p>
+<%}%>
+<form action="/inv/<%=items.id%>/edit" method="get">
+  <button>Edit</button>
+</form>
+<form action="/inv/<%=items.id%>/?_method=DELETE" method="post">
+  <button>Delete</button>
+</form>
+
+<%- include('./partials/footer.ejs') %>
