@@ -1,8 +1,7 @@
 <%- include('./partials/header.ejs') %>
 
 <h1><%=items.name%></h1>
-<p><%=items.description%></p>
-<p>Price: <%=items.price%></p>
+<p>Status: <%=items.status%></p>
 <%if (items.qty > 0) {%>
   <p>Quantity: <%=items.qty%></p>
   <form action="/inv/<%=items.id%>/buy?_method=PUT" method="POST">
@@ -12,6 +11,7 @@
 <%} else {%>
   <p>SOLD OUT!</p>
 <%}%>
+
 <form action="/inv/<%=items.id%>/edit" method="get">
   <button>Edit</button>
 </form>
