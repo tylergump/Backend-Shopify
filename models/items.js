@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 
 const itemsSchema = new mongoose.Schema({
   name: {type: String, required: true},
-  status: {type: String, required: true, enum: ['Active', 'Deleted']},
+  deleted: {type: Boolean, default: false},
   qty: {type: Number, required: true},
+  deletionReason: {type: String, required: false}
 })
 
 
