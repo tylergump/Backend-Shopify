@@ -5,9 +5,9 @@
 <!-- <p>Deleted: <%=items.deleted%></p> -->
 <%if (items.qty > 0) {%>
   <p>Quantity: <%=items.qty%></p>
-  <!-- <form action="/inv/<%=items.id%>/buy?_method=PUT" method="POST">
-    <button>Buy</button>
-  </form> -->
+  <form action="/inv/<%=items.id%>/del?_method=PUT" method="POST">
+    <button>Soft Delete</button>
+  </form>
 
 <%} else {%>
   <p>Quantity: SOLD OUT</p>

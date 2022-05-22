@@ -6,9 +6,9 @@
   <!-- <p>Deleted: <%=items[i].deleted%></p> -->
   <%if (items[i].qty > 0) {%>
     <p>Quantity: <%=items[i].qty%></p>
-    <!-- <form action="/inv/<%=items[i].id%>/buy?_method=PUT" method="POST">
+    <form action="/inv/<%=items[i].id%>/del?_method=PUT" method="POST">
       <button>Buy</button>
-    </form> -->
+    </form>
   <%} else {%>
     <p>Quantity: SOLD OUT</p>
   <%}%>
