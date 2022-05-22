@@ -1,6 +1,6 @@
 # Backend-Shopify
 
-This application
+This is an inventory tracking web application possessing basic CRUD functionality, along with the ability to allow deletion comments and undeletion.
 
 ## 🔧 Getting Started
 
@@ -11,11 +11,11 @@ git clone git@git.generalassemb.ly:tylergump150/Backend-Shopify.git
 ```
 
 
-Then navigate to the app and install the required dependencies
+Then navigate to the app and install the required dependencies:
 ```bash
 npm i express mongoose dotenv ejs method-override
 ```
 (Note: you're welcome to create your own .env file and environmental variables but they're not required with this app)
 
 
-Then simply start the app using the CLI (``` nodemon``` || ``` node server.js```) and type "http://localhost:3000/inv" into your browser, and you're good to go.
+Then simply start the app using the CLI (```nodemon``` || ``` node server.js```) and type "http://localhost:3000/inv" into your address bar, and you're good to go.
