@@ -100,22 +100,16 @@ router.get('/del', (req, res) => {
   })
 })
 
-// Item.findOne({ 'deleted' : 'true'}, 'name qty deleted', function(err, item) {
-//   if (err) return handleErr(err);
-
-//   console.log(item.name, item.qty, item.deleted)
+// router.put('/:id/buy', (req, res) => {
+//     Item.findByIdAndUpdate(req.params.id, { $inc: { qty: -1} }, {new: true}, (error, foundItem) => {
+//     if (error) {
+//       console.log(error)
+//       res.send(error)
+//     } else {
+//       res.redirect('/inv/'+ req.params.id)
+//     }
+//   })
 // })
-
-router.put('/:id/buy', (req, res) => {
-    Item.findByIdAndUpdate(req.params.id, { $inc: { qty: -1} }, {new: true}, (error, foundItem) => {
-    if (error) {
-      console.log(error)
-      res.send(error)
-    } else {
-      res.redirect('/inv/'+ req.params.id)
-    }
-  })
-})
 
 router.put('/:id/del', (req, res) => {
   Item.findByIdAndUpdate(req.params.id, { deleted : true }, {new: true}, (error, foundItem) => {
@@ -124,6 +118,18 @@ router.put('/:id/del', (req, res) => {
     res.send(error)
   } else {
     console.log("You soft deleted", foundItem)
+    res.redirect('/inv/'+ req.params.id)
+  }
+})
+})
+
+router.put('/:id/undel', (req, res) => {
+  Item.findByIdAndUpdate(req.params.id, { deleted : false }, {new: true}, (error, foundItem) => {
+  if (error) {
+    console.log(error)
+    res.send(error)
+  } else {
+    console.log("You undeleted", foundItem)
     res.redirect('/inv/'+ req.params.id)
   }
 })

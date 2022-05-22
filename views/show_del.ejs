@@ -1,0 +1,24 @@
+<%- include('./partials/header.ejs') %>
+
+<h1><%=items.name%></h1>
+
+<!-- <p>Deleted: <%=items.deleted%></p> -->
+<%if (items.qty > 0) {%>
+  <p>Quantity: <%=items.qty%></p>
+  <form action="/inv/<%=items.id%>/del?_method=PUT" method="POST">
+    <button>Undelete</button>
+  </form>
+
+<%} else {%>
+  <p>Quantity: SOLD OUT</p>
+<%}%>
+%>
+<p>Deleted: <%=items.deleted%></p>
+<form action="/inv/<%=items.id%>/edit" method="get">
+  <button>Edit</button>
+</form>
+<form action="/inv/<%=items.id%>/?_method=DELETE" method="post">
+  <button>Delete</button>
+</form>
+
+<%- include('./partials/footer.ejs') %>
