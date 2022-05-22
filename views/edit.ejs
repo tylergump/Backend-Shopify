@@ -7,15 +7,20 @@
   Quantity: <input type="text" name="qty" value="<%=item.qty%>"> <br/>
 
   <!-- <input type="submit" name="" value="Update"> -->
-  Deleted: 
+  <%if (item.deleted) {%>
+  
+  Deletion Reason: 
   <input 
-    name="deleted" 
-    type="checkbox"
-    <% if (item.deleted) { %>
-      checked
-    <% } %> >
+    name="deletionReason" 
+    type="input"
+    value="<%=item.deletionReason%>">
      <br/>
+
+     <%}%>
+
      <input type="submit" name="" value="Update">
+
+
 </form>
 
 

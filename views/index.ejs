@@ -12,13 +12,16 @@
     <p>Quantity: SOLD OUT</p>
   <%}%>
 
-  <p>Deleted: <%=items[i].deleted%></p>
 
   <%if (items[i].deleted) {%>
+
+    <p>Deletion Reason: <%=items[i].deletionReason%></p>
+
     <form action="/inv/<%=items[i].id%>/undel?_method=PUT" method="POST">
       <button>Undelete</button>
     </form>
     
+
   <%} else {%>
     <form action="/inv/<%=items[i].id%>/del?_method=PUT" method="POST">
       <button>Soft Delete</button>
@@ -26,9 +29,6 @@
 
   <%}%>
 
-  <!-- <form action="/inv/<%=items[i].id%>/del?_method=PUT" method="POST">
-    <button>Soft Delete</button>
-  </form> -->
   <form action="/inv/<%=items[i].id%>?_method=DELETE" method="post">
     <button> Hard Delete</button>
   </form>

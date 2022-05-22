@@ -2,14 +2,12 @@ const express = require('express')
 const router = express.Router()
 const Item = require('../models/items')
 const alert = require('alert'); 
-// const prompts = require('prompts');
 
 router.get('/', (req, res) => {
     Item.find({deleted: 'false'}, (err, items) => {
     res.render('index.ejs', {
       items: items
       })
-      // console.log(items)
     })
   })
 
@@ -18,7 +16,6 @@ router.get('/', (req, res) => {
     res.render('index.ejs', {
       items: items
       })
-      // console.log(items)
     })
   })
 
@@ -27,12 +24,7 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  if (req.body.deleted === "on") {
-    req.body.deleted = true
-  } else {
-    req.body.deleted = false
-  }
-    // console.log(req.body)
+
     Item.create(req.body, (error, createdItem) => {
   if (error) {
     console.log(error)
@@ -40,7 +32,6 @@ router.post('/', (req, res) => {
   } else {
     console.log(createdItem)
     res.redirect('/inv')
-    // alert("Item has been added to the Database")
   }
 })
 })
@@ -78,7 +69,6 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  req.body.deleted = (req.body.deleted === 'on')
     Item.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, foundItem) => {
     if (error) {
       console.log(error)
@@ -100,16 +90,7 @@ router.get('/del', (req, res) => {
   })
 })
 
-// router.put('/:id/buy', (req, res) => {
-//     Item.findByIdAndUpdate(req.params.id, { $inc: { qty: -1} }, {new: true}, (error, foundItem) => {
-//     if (error) {
-//       console.log(error)
-//       res.send(error)
-//     } else {
-//       res.redirect('/inv/'+ req.params.id)
-//     }
-//   })
-// })
+
 
 router.put('/:id/del', (req, res) => {
   Item.findByIdAndUpdate(req.params.id, { deleted : true }, {new: true}, (error, foundItem) => {
@@ -124,7 +105,7 @@ router.put('/:id/del', (req, res) => {
 })
 
 router.put('/:id/undel', (req, res) => {
-  Item.findByIdAndUpdate(req.params.id, { deleted : false }, {new: true}, (error, foundItem) => {
+  Item.findByIdAndUpdate(req.params.id, { deleted : false, deletionReason : "" }, {new: true}, (error, foundItem) => {
   if (error) {
     console.log(error)
     res.send(error)
@@ -146,11 +127,5 @@ router.put('/:id/', (req, res) => {
   }
 })
 })
-
-router.patch('/:id', function (req, res) {
-  var updateObject = req.body; // {last_name : "smith", age: 44}
-  var id = req.params.id;
-  db.users.update({_id  : ObjectId(id)}, {$set: updateObject});
-});
 
 module.exports = router
